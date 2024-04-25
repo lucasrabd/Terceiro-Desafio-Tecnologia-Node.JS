@@ -1,0 +1,15 @@
+{
+  "name": "terceiro-desafio-tecnologia-node.js",
+  "version": "1.0.0",
+  "description": "- Bruno Ramos da Costa(RM551942)\r - Guilherme Faria de Aguiar(RM551374)\r - Henrique Roncon Pereira (RM99161)\r - Lucas Carabolad Bob (RM550519)\r - Thiago Ulrych (RM97951)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
