@@ -1,23 +1,74 @@
-# Terceiro-Desafio-Tecnologia-Node.js
+# 🐳 Terceiro Desafio de Tecnologia — Node.js
 
-# Wink
+Parte do desafio DevOps da **DimDim**: migração do ambiente de desenvolvimento para containers Docker. Este repositório cobre a stack **Node.js** — uma API Express minimalista, containerizada, servindo como prova de conceito de deploy em Docker.
+
+## 👥 Equipe (Wink)
+
 - Bruno Ramos da Costa (RM551942)
 - Guilherme Faria de Aguiar (RM551374)
 - Henrique Roncon Pereira (RM99161)
 - Lucas Carabolad Bob (RM550519)
 - Thiago Ulrych (RM97951)
 
-## Introdução
-A equipe de DevOps da DimDim foi encarregada de realizar testes de migração do ambiente de desenvolvimento para Containers Docker, utilizando as tecnologias Java, Python e NodeJS. Este repositório documenta o processo de implantação dessas tecnologias em containers e a coleta de evidências para a equipe de Arquitetura da DimDim.
+---
 
-## Objetivo
-Este repositório tem como objetivo documentar o processo de implantação das tecnologias Java, Python e NodeJS em containers Docker. Não incluiremos instruções detalhadas sobre como executar os containers, mas sim fornecer uma visão geral do processo e sua importância.
+## 📦 Stack
 
-## Para que serve?
-A utilização de containers Docker oferece diversas vantagens para o desenvolvimento de software, tais como:
-- Isolamento de ambientes: Cada container possui seu próprio ambiente isolado, garantindo que as dependências e configurações de um aplicativo não interfiram em outros.
-- Portabilidade: Os containers podem ser facilmente movidos entre diferentes ambientes de desenvolvimento, teste e produção, garantindo consistência em todo o ciclo de vida do software.
-- Escalabilidade: Os containers podem ser facilmente escalados para atender a demandas variáveis de tráfego e carga de trabalho.
-- Facilidade de implantação: A implantação de aplicativos em containers Docker é simples e rápida, permitindo atualizações e rollbacks sem interrupções significativas.
+![Node.js](https://img.shields.io/badge/Node.js-LTS-339933?style=flat&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.19-000000?style=flat&logo=express&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Alpine-2496ED?style=flat&logo=docker&logoColor=white)
 
-Portanto, a migração do ambiente de desenvolvimento para containers Docker é uma etapa importante para melhorar a eficiência, consistência e escalabilidade do processo de desenvolvimento de software.
+---
+
+## 💡 Objetivo
+
+Documentar o processo de implantação de tecnologias (Java, Python e Node.js, cada uma em seu próprio repositório do desafio) em containers Docker, para a equipe de Arquitetura da DimDim avaliar portabilidade, isolamento e facilidade de deploy do ambiente de desenvolvimento.
+
+## 📁 Estrutura do Projeto
+
+```
+Terceiro-Desafio-Tecnologia-Node.JS-main/
+├── index.js           # API Express — rota única "/"
+├── package.json         # Dependências (express)
+├── Dockerfile              # Build da imagem Docker
+├── LICENSE                   # MIT
+└── .gitignore                  # Ignora node_modules/ e artefatos de build
+```
+
+> `node_modules/` e um `app.tar.gz` (tarball com o repo inteiro, incluindo `.git`) estavam commitados no zip original — foram removidos e adicionados ao `.gitignore`. Depois de clonar, rode `npm install` normalmente.
+
+## 🧩 O que a API faz
+
+Uma única rota:
+
+| Método | Rota | Resposta |
+|---|---|---|
+| GET | `/` | `Implantação efetuada com sucesso. Bom trabalho!.` |
+
+---
+
+## 🚀 Como rodar localmente (sem Docker)
+
+```bash
+npm install
+node index.js
+```
+
+Acesse `http://localhost:3000`.
+
+## 🐳 Como rodar com Docker
+
+```bash
+docker build -t terceiro-desafio-node .
+docker run -p 3000:3000 terceiro-desafio-node
+```
+
+> O `Dockerfile` original só copiava `index.js` pra dentro da imagem, sem rodar `npm install` — como o `index.js` depende do pacote `express`, o container quebrava em tempo de execução com `Cannot find module 'express'`. Corrigido: agora ele copia o `package.json`, instala as dependências (`npm install --omit=dev`) e só depois copia o código.
+
+Acesse `http://localhost:3000`.
+
+---
+
+## 📄 Licença
+
+MIT — veja [LICENSE](LICENSE).
